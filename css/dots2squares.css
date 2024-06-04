@@ -1,0 +1,287 @@
+:root {	
+    /* VersaDev: colours defined as #ff0000 are either currently not used or for debug purpose */
+    
+    /* Styles defined by theme */
+    --display-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";            
+    --game-font: 'GameFont', Segoe UI, Verdana, Arial; /* the font to use for all game elements */
+    --systemBorderRadius: 4px; /* defines the radius applied to borders and controls */
+    --body-background-color: var(--black); /* the background colour in the main content area */
+    --body-text-color: var(--yellow); /* the colour of the text in the main content area */
+        
+    --title-color: var(--yellow); /* the colour of the main title */
+    --scrollbar-color: #7160E8; /* set colour of custom scrollbar */
+        
+    --debugWindowColor: #222222; /* debug window background colour */
+    --debugWindowTextColor: #00ff21; /* debug window text colour */
+    --debugWindowBorderColor: #00ff21; /* debug window border colour */
+    
+    --statsWindowColor: #222222; /* stats window background colour */
+    --statsWindowTextColor: #00ff21; /* stats window text colour */
+    --statsWindowBorderColor: #00ff21; /* stats window border colour */
+
+    --buttonTextColour: var(--red);
+    --buttonBackgroundColour: var(--yellow);
+    --buttonBorderColour: var(--red);
+
+    --black: #000000;
+    --red: #ae2222;
+    --green: #47a167;
+    --darkgreen: #386732;
+    --blue: #2d89ef;
+    --yellow: #ffd800;
+    --orange: #ff6a00;
+    --grey: #808080;
+}
+
+@font-face {
+    font-family: 'GameFont'; /*a name to be used later*/
+    src: url('../fonts/Digitek.ttf'); /*URL to font*/
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: var(--display-font);
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 400px;
+    font-family: var(--game-font);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    background-color: var(--body-background-color);
+    color: var(--yellow);
+}
+
+.gameContainer {
+    margin: auto;
+    max-width: 400px; 
+    border: 0px solid #ff0000;
+    padding: 0px;            
+}
+
+.gameTitle {
+    font-size: 2.3rem;
+    line-height: 3.5rem;
+    color: var(--yellow);
+    font-style: normal;
+    font-weight: normal;
+    font-family: var(--game-font);
+    text-shadow: 4px 4px var(--red);
+}
+
+.gameText {
+    text-shadow: 4px 4px var(--red);
+}
+
+.gameOver {
+    position:absolute;
+    display: block;
+    z-index: 1;
+    top: 260px;
+    width: 400px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    font-size: 3.0rem;
+    line-height: 4.0rem;
+    color: var(--red);
+    font-style: normal;
+    font-weight: normal;
+    font-family: var(--game-font);
+    text-shadow: 2px 2px var(--yellow);
+    animation: blinker 1.0s linear infinite;
+    border: 0px solid #ff0000;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+.gameButton, .gameButton:link, .gameButton:visited, .gameButton:active, .gameButton:hover {
+    border:2px solid var(--buttonBorderColour);
+    border-radius: var(--systemBorderRadius);
+    min-width:100px;
+    height:32px;	
+    margin:2px;	
+    background-color: var(--buttonBackgroundColour);
+    color: var(--buttonTextColour);
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: normal;
+    font-family: var(--game-font);
+    cursor: pointer;
+    box-shadow: 1px 1px 0px var(--yellow);
+}
+
+.gameButton:hover {
+    background-color: var(--buttonTextColour);
+    color: var(--buttonBackgroundColour);
+}
+
+#mainCanvas {
+    touch-action:none;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background-color: transparent;
+    border: 2px solid var(--green);
+    border-radius: 10px;
+    /*z-index: -1;*/
+}
+
+/* VersaDev: Debug window start */
+#debugWindow {
+    touch-action: none; /* this is very important for touch to work */
+    position: absolute;
+    display: block;
+    visibility: visible;
+    top: 400px;
+    right: 50px;
+    padding: 4px 4px 4px 4px;
+    width: 400px;
+    height: 300px;
+    border: 1px solid var(--debugWindowBorderColor);
+    border-radius: var(--systemBorderRadius);
+    overflow: scroll;
+    background-color: var(--debugWindowColor);
+    font-family: Consolas, Courier, Lucida Console !important;
+    color: var(--debugWindowTextColor);
+    z-index: 1050; /* same value used by bootstrap modal */
+}
+/* VersaDev: Debug window end */
+
+/* VersaDev: Stats window start */
+#statsWindow {
+    touch-action: none; /* this is very important for touch to work */
+    position: absolute;
+    display: block;
+    visibility: visible;
+    top: 10px;
+    right: 50px;
+    padding: 4px 4px 4px 4px;
+    width: 400px;
+    height: 300px;
+    border: 1px solid var(--statsWindowBorderColor);
+    border-radius: var(--systemBorderRadius);
+    overflow: scroll;
+    background-color: var(--statsWindowColor);
+    font-family: Consolas, Courier, Lucida Console !important;
+    color: var(--statsWindowTextColor);
+    z-index: 1050; /* same value used by bootstrap modal */
+}
+/* VersaDev: Stats window end */
+
+/* VersaDev: Custom scrollbar start */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track (progress bar) */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px var(--grey);
+    border-radius: var(--systemBorderRadius);
+}
+
+/* Handle (draggable scrolling handle) */
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: var(--systemBorderRadius);
+    opacity: 0.7;
+}
+
+/* Buttons (arrows pointing upwards and downwards) */
+::-webkit-scrollbar-button {
+}
+
+/* Track (progress bar - NOT covered by the handle) */
+::-webkit-scrollbar-track-piece {
+}
+
+/*  Corner (corner of the scrollbar, where both horizontal and vertical scrollbars meet) */
+::-webkit-scrollbar-corner {
+}
+
+/* Resizer (draggable resizing handle that appears at the bottom corner of some elements) */
+::-webkit-resizer {
+}
+/* VersaDev: Custom scrollbar end */
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    gap: 0px 0px; /* shorthand for row-gap, column-gap */
+    border: 5px solid var(--red);
+    border-radius: 10px;
+    background-color: transparent;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    box-shadow: var(--red);
+    padding: 10px 10px 10px 10px;
+    max-width: 400px;                       
+}
+
+.flex-row {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch; /* all items (cells) on the row will have the same height */
+    padding: 0px;
+    width: 100%;
+    flex: 1 1 auto; /* flex is shorthand for flex-grow, flex-shrink, flex-basis */
+    gap: 0px 0px; /* shorthand for row-gap, column-gap */
+    background-color: transparent;
+    color: inherit;
+    border: 0px solid #ff0000;
+}        
+
+.flex-column {
+    background-color: var(--darkgreen);
+    padding: 5px; /* padding on the cell */
+    flex: 1 1 0; /* flex is shorthand for flex-grow, flex-shrink, flex-basis */
+    overflow: hidden; /* clip cell contents when widths get to small */
+    text-overflow: ellipsis; /* apply ellipses to text when widths get to small */
+    border: 0px solid #ff0000;               
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.flex-cols2 {
+    /* 2 column width */
+    flex: 2 2 0;
+}
+
+.flex-cols3 {
+    /* 3 column width */
+    flex: 3 3 0;
+}
+
+.flex-cols4 {
+    /* 4 column width */
+    flex: 4 4 0;
+}
+
+.flex-cols5 {
+    /* 5 column width */
+    flex: 5 5 0;
+}

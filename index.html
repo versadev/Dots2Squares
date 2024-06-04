@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/dots2squares.css" rel="stylesheet" />
+    <script src="scripts/jquery-3.7.1.js"></script>
+
+    <title>Dots2Squares - Game</title>
+
+</head>
+<body>
+
+    <div class="gameContainer">
+
+        <div id="gameBody" class="flex-container">
+            <div class="flex-row">
+                <div class="flex-column flex-cols2 text-center">
+                    <h1 class="gameTitle">Dots 2 Squares</h1>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column text-center text-bold gameText">                
+                    Player Score: <span id="playerScore">0</span>                
+                </div>
+                <div class="flex-column text-center text-bold gameText">
+                    Computer Score: <span id="computerScore">0</span>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column text-center text-bold gameText">                            
+                    <p><span id="isPlayer">&nbsp;</span></p>
+                </div>
+            </div>        
+            <div class="flex-row">
+                <div class="flex-column flex-cols2 text-center">                
+                    <!-- The canvas for the game -->
+                    <canvas id="mainCanvas" width="300" height="200">
+                        Your browser does not support canvas. Please try again with a different browser.
+                    </canvas>                                                    
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-column flex-cols2 text-center" style="min-height:60px;">
+                    <button id="btnPlay" class="gameButton" ontouchstart="DotGame.play();" onmousedown="DotGame.play();">Play</button>                
+                </div>
+            </div>        
+        </div>
+
+        <div id="gameOverMessage" class="gameOver">GAME<br />OVER</div>  
+
+    </div>
+
+    <div id="debugWindow">
+        Debug Window
+    </div>
+
+    <div id="statsWindow">
+        Frame count: <span id="frameCount">0</span><br />
+        FPS: <span id="fps">0</span><br />        
+        delayTimer1: <span id="delayTimer1">0</span><br />    
+        delayTimer2: <span id="delayTimer2">0</span><br /> 
+        <br /><br />
+        isGameOver: <span id="isGameOver"></span><br />
+        Available Squares: <span id="availableSquares"></span><br />
+        Primary moves: <span id="primaryMoves"></span><br />
+        Secondary moves: <span id="secondaryMoves"></span><br />
+        Tertiary moves: <span id="tertiaryMoves"></span><br />
+        Quaternary moves: <span id="quaternaryMoves"></span><br />
+    </div>
+    
+    <div style="position:absolute;top:600px;left:10px;">
+
+    </div>
+
+    <script src="scripts/dots2squares.js"></script>
+
+</body>
+</html>
+
